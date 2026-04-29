@@ -1,0 +1,87 @@
+MySQL Shell 8.0.45
+
+Copyright (c) 2016, 2026, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 10
+Server version: 8.0.45 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > select mensaje2("Saul");
+ERROR: 1046 (3D000): No database selected
+ MySQL  localhost:3306 ssl  SQL > select mensaje2("saul");
+ERROR: 1046 (3D000): No database selected
+ MySQL  localhost:3306 ssl  SQL > use tbd3;
+Default schema set to `tbd3`.
+Fetching global names, object names from `tbd3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd3  SQL > select mensaje2("saul");
++------------------+
+| mensaje2("saul") |
++------------------+
+| HOLAsaul         |
++------------------+
+1 row in set (0.0028 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select saludo("Saul") as SALUDO;
++----------+
+| SALUDO   |
++----------+
+| holaSaul |
++----------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL >
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumar(10,20) as sumar;
++-------+
+| sumar |
++-------+
+|    30 |
++-------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select mayor(10, 30) as mayor;
++-------+
+| mayor |
++-------+
+|    30 |
++-------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select mayor(30, 30) as mayor;
++-------+
+| mayor |
++-------+
+|    30 |
++-------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select mayor(30, 45) as mayor;
++-------+
+| mayor |
++-------+
+|    45 |
++-------+
+1 row in set (0.0006 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select dia_semana(5);
++---------------+
+| dia_semana(5) |
++---------------+
+| Jueves        |
++---------------+
+1 row in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select dia_semana(7);
++---------------+
+| dia_semana(7) |
++---------------+
+| Sabado        |
++---------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select dia_semana(8);
++---------------+
+| dia_semana(8) |
++---------------+
+| No valido     |
++---------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL >
