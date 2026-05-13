@@ -1,0 +1,178 @@
+MySQL Shell 8.0.45
+
+Copyright (c) 2016, 2026, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost;
+Creating a Classic session to 'root@localhost;'
+Please provide the password for 'root@localhost;': *****
+MySQL Error 2005 (HY000): Unknown MySQL server host 'localhost;' (11001)
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.45 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use tdb3
+MySQL Error 1049: Unknown database 'tdb3'
+ MySQL  localhost:3306 ssl  SQL > use tbd3
+Default schema set to `tbd3`.
+Fetching global names, object names from `tbd3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd3  SQL > show tables;
++----------------+
+| Tables_in_tbd3 |
++----------------+
+| customer       |
+| persona        |
+| prueba         |
++----------------+
+3 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > desc persona
+                                     -> ;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| rfc        | varchar(10) | NO   | PRI | NULL    |       |
+| nombre     | varchar(50) | NO   |     | NULL    |       |
+| ap_paterno | varchar(50) | NO   |     | NULL    |       |
+| ap_materno | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.0052 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > call insertar_persona("Ruben", "hernandez", "chavez", "1998-9-11");
+ERROR: 1305 (42000): PROCEDURE tbd3.insertar_persona does not exist
+ MySQL  localhost:3306 ssl  tbd3  SQL > select ¨from prueba;
+ERROR: 1054 (42S22): Unknown column '¨from' in 'field list'
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from prueba;
++----+-------+
+| id | valor |
++----+-------+
+|  1 | algo  |
+|  2 | algo  |
+|  3 | algo  |
+|  4 | algo  |
+|  1 | sus   |
++----+-------+
+5 rows in set (0.0095 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > alter table prueba change id id int not null primary key;
+ERROR: 1062 (23000): Duplicate entry '1' for key 'prueba.PRIMARY'
+ MySQL  localhost:3306 ssl  tbd3  SQL > delete from prueba where valor = "sus";
+Query OK, 1 row affected (0.0089 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > alter table prueba change id id int not null primary key;
+Query OK, 0 rows affected (0.0752 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into prueba value(6, "xxx");
+Query OK, 1 row affected (0.0049 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from prueba;
++----+-------+
+| id | valor |
++----+-------+
+|  1 | algo  |
+|  2 | algo  |
+|  3 | algo  |
+|  4 | algo  |
+|  6 | xxx   |
++----+-------+
+5 rows in set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > call insertar_prueba3(7, "xxxx");
+ERROR: 1318 (42000): Incorrect number of arguments for PROCEDURE tbd3.insertar_prueba3; expected 1, got 2
+ MySQL  localhost:3306 ssl  tbd3  SQL > call insertar_prueba4(7, "xxxx");
++----------------------------------+
+| masaje                           |
++----------------------------------+
+| datos insertados correctamente!! |
++----------------------------------+
+1 row in set (0.0064 sec)
+
+Query OK, 0 rows affected (0.0064 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > call insertar_prueba4(7, "xxxx");
++------------------------+
+| masaje                 |
++------------------------+
+| error: calve duplicada |
++------------------------+
+1 row in set (0.0013 sec)
+
+Query OK, 0 rows affected (0.0013 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select count(*) from customer;
++----------+
+| count(*) |
++----------+
+|      601 |
++----------+
+1 row in set (0.0102 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL >
+
+MySQL Shell 8.0.45
+
+Copyright (c) 2016, 2026, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > connect --mc root@localhost
+ERROR: Not connected.
+           -> ;
+ERROR: Not connected.
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 10
+Server version: 8.0.45 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > select qcont =0;
+ERROR: 1054 (42S22): Unknown column 'qcont' in 'field list'
+ MySQL  localhost:3306 ssl  SQL > select @cont =0;
++----------+
+| @cont =0 |
++----------+
+|     NULL |
++----------+
+1 row in set (0.0035 sec)
+ MySQL  localhost:3306 ssl  SQL > ese tbd3
+                               -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ese tbd3' at line 1
+ MySQL  localhost:3306 ssl  SQL > use tbd3 ;
+Default schema set to `tbd3`.
+Fetching global names, object names from `tbd3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd3  SQL > select @cont =0;
++----------+
+| @cont =0 |
++----------+
+|     NULL |
++----------+
+1 row in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > call contar_clientes(@cont);
+ERROR: 1054 (42S22): Unknown column 'terminear' in 'field list'
+ MySQL  localhost:3306 ssl  tbd3  SQL > call contar_clientes(@cont);
+ERROR: 1054 (42S22): Unknown column 'terminer' in 'field list'
+ MySQL  localhost:3306 ssl  tbd3  SQL > call contar_clientes(@cont);
+Query OK, 0 rows affected (0.0067 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select @count;
++--------+
+| @count |
++--------+
+| NULL   |
++--------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select @cont;
++-------+
+| @cont |
++-------+
+|   602 |
++-------+
+1 row in set (0.0039 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > use sakila;
+Default schema set to `sakila`.
+Fetching global names, object names from `sakila` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  sakila  SQL > use sakila;
+Default schema set to `sakila`.
+Fetching global names, object names from `sakila` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  sakila  SQL >
